@@ -33,7 +33,7 @@ const getTodayTasks = async (req, res, next) => {
         const email = req.params.email;
 
         const today = moment().format('YYYY-MM-DD');
-        const tasks = await TaskModel.find({ email, complete: false, date: { $eq: today } });
+        const tasks = await TaskModel.find({ email, complete: false});
         res.status(200).json(tasks);
     } catch (error) {
         next(error);
