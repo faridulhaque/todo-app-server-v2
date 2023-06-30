@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const authRoutes = require("./src/routes/auth.routes.js")
+const taskRoutes = require("./src/routes/task.routes.js")
 
 
 
@@ -20,6 +21,7 @@ app.options("*", cors(corsConfig));
 
 
 app.use("/auth", authRoutes)
+app.use("/task", taskRoutes)
 
 
 // connect with mongodb

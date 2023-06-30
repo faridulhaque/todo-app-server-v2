@@ -2,6 +2,8 @@ const UserModel = require("../models/user.model");
 
 const bcrypt = require("bcrypt");
 
+const jwt  = require("jsonwebtoken");
+
 
 const register = async (req, res, next) => {
     try {
@@ -16,7 +18,6 @@ const register = async (req, res, next) => {
         else {
             const salt = await bcrypt.genSalt();
 
-            console.log(salt)
             const passwordHash = await bcrypt.hash(password, salt)
             const newUser = new UserModel({
                 name, email,
@@ -24,7 +25,6 @@ const register = async (req, res, next) => {
             })
 
             const savedUser = await newUser.save();
-            console.log(savedUser)
             savedUser.password = null;
 
             res.status(200).json(savedUser)
